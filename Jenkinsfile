@@ -4,7 +4,7 @@ pipeline {
     stages {
 
         stage('Get Code') {
-            agent { label any }
+            agent any
 
             steps {
                 sh 'whoami'
