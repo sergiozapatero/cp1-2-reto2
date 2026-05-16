@@ -12,6 +12,7 @@ pipeline {
                 sh 'echo $WORKSPACE'
 
                 git 'https://github.com/sergiozapatero/cp1-2-reto2.git'
+
                 sh 'ls -l'
             }
         }
@@ -26,9 +27,12 @@ pipeline {
                     steps {
                         sh 'whoami'
                         sh 'hostname'
-			sh 'export PYTHONPATH=$WORKSPACE'
                         sh 'echo $WORKSPACE'
-                        sh 'pytest test/unit --junitxml=result-unit.xml'
+
+                        sh '''
+                        export PYTHONPATH=$WORKSPACE
+                        pytest test/unit --junitxml=result-unit.xml
+                        '''
                     }
 
                     post {
@@ -46,7 +50,10 @@ pipeline {
                         sh 'hostname'
                         sh 'echo $WORKSPACE'
 
-                        sh 'pytest test/rest --junitxml=result-rest.xml'
+                        sh '''
+                        export PYTHONPATH=$WORKSPACE
+                        pytest test/rest --junitxml=result-rest.xml
+                        '''
                     }
 
                     post {
@@ -64,7 +71,10 @@ pipeline {
                         sh 'hostname'
                         sh 'echo $WORKSPACE'
 
-                        sh 'flake8 app --exit-zero --format=pylint > flake8-report.txt'
+                        sh '''
+                        export PYTHONPATH=$WORKSPACE
+                        flake8 app --exit-zero --format=pylint > flake8-report.txt
+                        '''
                     }
                 }
 
@@ -76,7 +86,10 @@ pipeline {
                         sh 'hostname'
                         sh 'echo $WORKSPACE'
 
-                        sh 'bandit -r app -f txt -o bandit-report.txt || true'
+                        sh '''
+                        export PYTHONPATH=$WORKSPACE
+                        bandit -r app -f txt -o bandit-report.txt || true
+                        '''
                     }
                 }
 
@@ -89,6 +102,7 @@ pipeline {
                         sh 'echo $WORKSPACE'
 
                         sh '''
+                        export PYTHONPATH=$WORKSPACE
                         coverage run --branch -m pytest test/unit
                         coverage xml -o coverage.xml
                         coverage report
@@ -111,9 +125,8 @@ pipeline {
         }
     }
 
-post {
-    always {
-        any node {
+    post {
+        always {
             script {
                 if (fileExists('result.jtl')) {
                     perfReport sourceDataFiles: 'result.jtl'
@@ -123,5 +136,4 @@ post {
             }
         }
     }
-}
 }
