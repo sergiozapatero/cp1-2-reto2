@@ -31,7 +31,9 @@ pipeline {
 
                         sh '''
                         export PYTHONPATH=$WORKSPACE
-                        pytest test/unit --junitxml=result-unit.xml
+
+                        pytest test/unit \
+                        --junitxml=result-unit.xml
                         '''
                     }
 
@@ -52,13 +54,40 @@ pipeline {
 
                         sh '''
                         export PYTHONPATH=$WORKSPACE
-                        pytest test/rest --junitxml=result-rest.xml
+
+                        echo "Starting Flask API..."
+
+                        nohup python3 app/api.py > flask.log 2>&1 &
+
+                        sleep 5
+
+                        echo "Starting WireMock..."
+
+                        cd wiremock
+
+                        nohup java -jar wiremock.jar \
+                        --port 9090 \
+                        > wiremock.log 2>&1 &
+
+                        cd ..
+
+                        sleep 10
+
+                        echo "Running REST tests..."
+
+                        pytest test/rest \
+                        --junitxml=result-rest.xml
                         '''
                     }
 
                     post {
                         always {
                             junit 'result-rest.xml'
+
+                            sh '''
+                            pkill -f "python3 app/api.py" || true
+                            pkill -f "wiremock.jar" || true
+                            '''
                         }
                     }
                 }
@@ -73,7 +102,11 @@ pipeline {
 
                         sh '''
                         export PYTHONPATH=$WORKSPACE
-                        flake8 app --exit-zero --format=pylint > flake8-report.txt
+
+                        flake8 app \
+                        --exit-zero \
+                        --format=pylint \
+                        > flake8-report.txt
                         '''
                     }
                 }
@@ -88,7 +121,10 @@ pipeline {
 
                         sh '''
                         export PYTHONPATH=$WORKSPACE
-                        bandit -r app -f txt -o bandit-report.txt || true
+
+                        bandit -r app \
+                        -f txt \
+                        -o bandit-report.txt || true
                         '''
                     }
                 }
@@ -103,8 +139,12 @@ pipeline {
 
                         sh '''
                         export PYTHONPATH=$WORKSPACE
-                        coverage run --branch -m pytest test/unit
+
+                        coverage run --branch \
+                        -m pytest test/unit
+
                         coverage xml -o coverage.xml
+
                         coverage report
                         '''
                     }
@@ -118,20 +158,18 @@ pipeline {
                         sh 'hostname'
                         sh 'echo $WORKSPACE'
 
-                        sh 'jmeter -n -t performance/test.jmx -l result.jtl'
+                        sh '''
+                        jmeter -n \
+                        -t performance/test.jmx \
+                        -l result.jtl
+                        '''
                     }
-                }
-            }
-        }
-    }
 
-    post {
-        always {
-            script {
-                if (fileExists('result.jtl')) {
-                    perfReport sourceDataFiles: 'result.jtl'
-                } else {
-                    echo "Skipping perfReport"
+                    post {
+                        always {
+                            perfReport sourceDataFiles: 'result.jtl'
+                        }
+                    }
                 }
             }
         }
