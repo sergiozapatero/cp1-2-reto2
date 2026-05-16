@@ -26,8 +26,8 @@ pipeline {
                     steps {
                         sh 'whoami'
                         sh 'hostname'
+			sh 'export PYTHONPATH=$WORKSPACE'
                         sh 'echo $WORKSPACE'
-
                         sh 'pytest test/unit --junitxml=result-unit.xml'
                     }
 
@@ -113,6 +113,7 @@ pipeline {
 
     post {
         always {
+	 node {
             script {
                 if (fileExists('result.jtl')) {
                     perfReport sourceDataFiles: 'result.jtl'
@@ -121,5 +122,6 @@ pipeline {
                 }
             }
         }
+}
     }
 }
