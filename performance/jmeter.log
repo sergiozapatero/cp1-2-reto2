@@ -1,79 +1,37 @@
-2026/05/16 00:05:07 INFO  - jmeter.util.JMeterUtils: Setting Locale to es_ES 
-2026/05/16 00:05:07 INFO  - jmeter.util.JMeterUtils: Could not find resources for 'es_ES', using 'es' 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: Loading user properties from: /usr/share/jmeter/bin/user.properties 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: Loading system properties from: /usr/share/jmeter/bin/system.properties 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: Copyright (c) 1998-2015 The Apache Software Foundation 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: Version 2.13.19691222 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: java.version=11.0.30 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: java.vm.name=OpenJDK 64-Bit Server VM 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: os.name=Linux 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: os.arch=amd64 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: os.version=6.8.0-111-generic 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: file.encoding=UTF-8 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: Default Locale=español (España) 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: JMeter  Locale=español (España) 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: JMeterHome=/usr/share/jmeter 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: user.dir  =/home/sergio/cp1-2/helloworld/performance 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: PWD       =/home/sergio/cp1-2/helloworld/performance 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: IP: 127.0.1.1 Name: sergiozapatero FullName: sergiozapatero.myguest.virtualbox.org 
-2026/05/16 00:05:07 INFO  - jmeter.gui.action.LookAndFeelCommand: Using look and feel: javax.swing.plaf.metal.MetalLookAndFeel [Metal, CrossPlatform] 
-2026/05/16 00:05:07 INFO  - jmeter.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties 
-2026/05/16 00:05:08 INFO  - jmeter.engine.util.CompoundVariable: Note: Function class names must contain the string: '.functions.' 
-2026/05/16 00:05:08 INFO  - jmeter.engine.util.CompoundVariable: Note: Function class names must not contain the string: '.gui.' 
-2026/05/16 00:05:08 INFO  - jmeter.util.BSFTestElement: Registering JMeter version of JavaScript engine as work-round for BSF-22 
-2026/05/16 00:05:08 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Cannot find .className property for htmlParser, using default 
-2026/05/16 00:05:08 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/html is  
-2026/05/16 00:05:08 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for application/xhtml+xml is  
-2026/05/16 00:05:08 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for application/xml is  
-2026/05/16 00:05:08 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/xml is  
-2026/05/16 00:05:08 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser 
-2026/05/16 00:05:09 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.protocol.http.modifier.gui.ParamModifierGui 
-2026/05/16 00:05:09 INFO  - jorphan.exec.KeyToolUtils: keytool found at 'keytool' 
-2026/05/16 00:05:09 INFO  - jmeter.protocol.http.proxy.ProxyControl: HTTP(S) Test Script Recorder SSL Proxy will use keys that support embedded 3rd party resources in file /usr/share/jmeter/bin/proxyserver.jks 
-2026/05/16 00:05:09 INFO  - jmeter.samplers.SampleResult: Note: Sample TimeStamps are START times 
-2026/05/16 00:05:09 INFO  - jmeter.samplers.SampleResult: sampleresult.default.encoding is set to ISO-8859-1 
-2026/05/16 00:05:09 INFO  - jmeter.samplers.SampleResult: sampleresult.useNanoTime=true 
-2026/05/16 00:05:09 INFO  - jmeter.samplers.SampleResult: sampleresult.nanoThreadSleep=5000 
-2026/05/16 00:08:18 INFO  - jmeter.engine.StandardJMeterEngine: Listeners will be started after enabling running version 
-2026/05/16 00:08:18 INFO  - jmeter.engine.StandardJMeterEngine: To revert to the earlier behaviour, define jmeterengine.startlistenerslater=false 
-2026/05/16 00:08:18 INFO  - jmeter.engine.StandardJMeterEngine: Running the test! 
-2026/05/16 00:08:18 INFO  - jmeter.samplers.SampleEvent: List of sample_variables: [] 
-2026/05/16 00:08:18 INFO  - jmeter.samplers.SampleEvent: List of sample_variables: [] 
-2026/05/16 00:08:18 INFO  - jmeter.gui.util.JMeterMenuBar: setRunning(true,*local*) 
-2026/05/16 00:08:18 INFO  - jmeter.engine.StandardJMeterEngine: Starting ThreadGroup: 1 : Grupo de Hilos 
-2026/05/16 00:08:18 INFO  - jmeter.engine.StandardJMeterEngine: Starting 5 threads for group Grupo de Hilos. 
-2026/05/16 00:08:18 INFO  - jmeter.engine.StandardJMeterEngine: Thread will continue on error 
-2026/05/16 00:08:18 INFO  - jmeter.threads.ThreadGroup: Starting thread group number 1 threads 5 ramp-up 1 perThread 200.0 delayedStart=false 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: jmeterthread.startearlier=true (see jmeter.properties) 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Running PostProcessors in forward order 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread started: Grupo de Hilos 1-1 
-2026/05/16 00:08:18 INFO  - jmeter.threads.ThreadGroup: Started thread group number 1 
-2026/05/16 00:08:18 INFO  - jmeter.engine.StandardJMeterEngine: All thread groups have been started 
-2026/05/16 00:08:18 INFO  - jmeter.protocol.http.sampler.HTTPHCAbstractImpl: Local host = sergiozapatero 
-2026/05/16 00:08:18 INFO  - jmeter.protocol.http.sampler.HTTPHC4Impl: HTTP request retry count = 0 
-2026/05/16 00:08:18 INFO  - jmeter.protocol.http.sampler.HTTPHC4Impl: Setting up HTTPS TrustAll scheme 
-2026/05/16 00:08:18 INFO  - jmeter.util.JsseSSLManager: Using default SSL protocol: TLS 
-2026/05/16 00:08:18 INFO  - jmeter.util.JsseSSLManager: SSL session context: per-thread 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread started: Grupo de Hilos 1-2 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread is done: Grupo de Hilos 1-1 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread finished: Grupo de Hilos 1-1 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread is done: Grupo de Hilos 1-2 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread finished: Grupo de Hilos 1-2 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread started: Grupo de Hilos 1-3 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread is done: Grupo de Hilos 1-3 
-2026/05/16 00:08:18 INFO  - jmeter.threads.JMeterThread: Thread finished: Grupo de Hilos 1-3 
-2026/05/16 00:08:19 INFO  - jmeter.threads.JMeterThread: Thread started: Grupo de Hilos 1-4 
-2026/05/16 00:08:19 INFO  - jmeter.threads.JMeterThread: Thread started: Grupo de Hilos 1-5 
-2026/05/16 00:08:19 INFO  - jmeter.threads.JMeterThread: Thread is done: Grupo de Hilos 1-5 
-2026/05/16 00:08:19 INFO  - jmeter.threads.JMeterThread: Thread finished: Grupo de Hilos 1-5 
-2026/05/16 00:08:19 INFO  - jmeter.threads.JMeterThread: Thread is done: Grupo de Hilos 1-4 
-2026/05/16 00:08:19 INFO  - jmeter.threads.JMeterThread: Thread finished: Grupo de Hilos 1-4 
-2026/05/16 00:08:19 INFO  - jmeter.engine.StandardJMeterEngine: Notifying test listeners of end of test 
-2026/05/16 00:08:19 INFO  - jmeter.services.FileServer: Default base='/home/sergio/cp1-2/helloworld/performance' 
-2026/05/16 00:08:19 INFO  - jmeter.gui.util.JMeterMenuBar: setRunning(false,*local*) 
-2026/05/16 00:10:08 INFO  - jmeter.services.FileServer: Set new base='/home/sergio/cp1-2/helloworld/performance' 
-2026/05/16 00:10:08 INFO  - jmeter.save.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2 
-2026/05/16 00:10:08 INFO  - jmeter.save.SaveService: Using SaveService properties version 2.8 
-2026/05/16 00:10:08 INFO  - jmeter.save.SaveService: Using SaveService properties file version 1656252 
-2026/05/16 00:10:08 INFO  - jmeter.save.SaveService: Using SaveService properties file encoding UTF-8 
-2026/05/16 00:10:08 INFO  - jmeter.save.SaveService: All converter versions present and correct 
+2026/05/16 02:07:11 INFO  - jmeter.util.JMeterUtils: Setting Locale to es_ES 
+2026/05/16 02:07:11 INFO  - jmeter.util.JMeterUtils: Could not find resources for 'es_ES', using 'es' 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: Loading user properties from: /usr/share/jmeter/bin/user.properties 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: Loading system properties from: /usr/share/jmeter/bin/system.properties 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: Copyright (c) 1998-2015 The Apache Software Foundation 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: Version 2.13.19691222 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: java.version=21.0.10 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: java.vm.name=OpenJDK 64-Bit Server VM 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: os.name=Linux 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: os.arch=amd64 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: os.version=6.8.0-111-generic 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: file.encoding=UTF-8 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: Default Locale=español (España) 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: JMeter  Locale=español (España) 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: JMeterHome=/usr/share/jmeter 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: user.dir  =/home/sergio/cp1-2-reto2/helloworld/performance 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: PWD       =/home/sergio/cp1-2-reto2/helloworld/performance 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: IP: 127.0.1.1 Name: sergiozapatero FullName: sergiozapatero.myguest.virtualbox.org 
+2026/05/16 02:07:11 INFO  - jmeter.gui.action.LookAndFeelCommand: Using look and feel: javax.swing.plaf.metal.MetalLookAndFeel [Metal, CrossPlatform] 
+2026/05/16 02:07:11 INFO  - jmeter.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties 
+2026/05/16 02:07:11 INFO  - jmeter.engine.util.CompoundVariable: Note: Function class names must contain the string: '.functions.' 
+2026/05/16 02:07:11 INFO  - jmeter.engine.util.CompoundVariable: Note: Function class names must not contain the string: '.gui.' 
+2026/05/16 02:07:12 FATAL - jmeter.JMeter: An error occurred:  java.lang.reflect.InaccessibleObjectException: Unable to make field private static java.lang.String sun.awt.X11.XToolkit.awtAppClassName accessible: module java.desktop does not "opens sun.awt.X11" to unnamed module @65e579dc
+	at java.base/java.lang.reflect.AccessibleObject.throwInaccessibleObjectException(AccessibleObject.java:391)
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:367)
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:315)
+	at java.base/java.lang.reflect.Field.checkCanSetAccessible(Field.java:183)
+	at java.base/java.lang.reflect.Field.setAccessible(Field.java:177)
+	at org.apache.jmeter.gui.MainFrame.setWindowTitle(MainFrame.java:808)
+	at org.apache.jmeter.gui.MainFrame.init(MainFrame.java:512)
+	at org.apache.jmeter.gui.MainFrame.<init>(MainFrame.java:219)
+	at org.apache.jmeter.JMeter.startGui(JMeter.java:242)
+	at org.apache.jmeter.JMeter.start(JMeter.java:387)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.jmeter.NewDriver.main(NewDriver.java:264)
+

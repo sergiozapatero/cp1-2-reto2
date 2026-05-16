@@ -1,91 +1,125 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
 
         stage('Get Code') {
+            agent { label 'master' }
+
             steps {
-                git 'https://github.com/sergiozapatero/cp1-2.git'
-                sh 'pwd'
+                sh 'whoami'
+                sh 'hostname'
+                sh 'echo $WORKSPACE'
+
+                git 'https://github.com/sergiozapatero/cp1-2-reto2.git'
                 sh 'ls -l'
             }
         }
 
-        stage('Unit') {
-            steps {
-                sh 'python3 -m pytest test/unit --junitxml=result-unit.xml'
-            }
-            post {
-                always {
-                    junit 'result-unit.xml'
+        stage('Parallel Tests') {
+
+            parallel {
+
+                stage('Unit') {
+                    agent { label 'python-agent' }
+
+                    steps {
+                        sh 'whoami'
+                        sh 'hostname'
+                        sh 'echo $WORKSPACE'
+
+                        sh 'pytest test/unit --junitxml=result-unit.xml'
+                    }
+
+                    post {
+                        always {
+                            junit 'result-unit.xml'
+                        }
+                    }
                 }
-            }
-        }
 
-        stage('Rest') {
-            steps {
-                sh 'python3 -m pytest test/rest --junitxml=result-rest.xml'
-            }
-            post {
-                always {
-                    junit 'result-rest.xml'
+                stage('Rest') {
+                    agent { label 'python-agent' }
+
+                    steps {
+                        sh 'whoami'
+                        sh 'hostname'
+                        sh 'echo $WORKSPACE'
+
+                        sh 'pytest test/rest --junitxml=result-rest.xml'
+                    }
+
+                    post {
+                        always {
+                            junit 'result-rest.xml'
+                        }
+                    }
                 }
-            }
-        }
 
-        stage('Static') {
-            steps {
-                sh 'flake8 app --exit-zero --format=pylint > flake8-report.txt'
-                recordIssues(
-                    tools: [pyLint(pattern: 'flake8-report.txt')],
-                    qualityGates: [
-                        [threshold: 8, type: 'TOTAL', unstable: true],
-                        [threshold: 10, type: 'TOTAL', failed: true]
-                    ]
-                )
-            }
-        }
+                stage('Static') {
+                    agent { label 'python-agent' }
 
-        stage('Security Test') {
-            steps {
-                sh 'bandit -r app -f txt -o bandit-report.txt || true'
+                    steps {
+                        sh 'whoami'
+                        sh 'hostname'
+                        sh 'echo $WORKSPACE'
 
-                recordIssues(
-                    tools: [pyLint(pattern: 'bandit-report.txt')],
-                    qualityGates: [
-                        [threshold: 2, type: 'TOTAL', unstable: true],
-                        [threshold: 4, type: 'TOTAL', failed: true]
-                    ]
-                )
-            }
-        }
+                        sh 'flake8 app --exit-zero --format=pylint > flake8-report.txt'
+                    }
+                }
 
-        stage('Performance') {
-            steps {
-                sh 'jmeter -n -t performance/test.jmx -l result.jtl'
-            }
-        }
+                stage('Security') {
+                    agent { label 'python-agent' }
 
-        stage('Coverage') {
-            steps {
-                sh '''
-                coverage run --branch -m pytest test/unit
-                coverage xml -o coverage.xml
-                coverage report
-                '''
+                    steps {
+                        sh 'whoami'
+                        sh 'hostname'
+                        sh 'echo $WORKSPACE'
+
+                        sh 'bandit -r app -f txt -o bandit-report.txt || true'
+                    }
+                }
+
+                stage('Coverage') {
+                    agent { label 'python-agent' }
+
+                    steps {
+                        sh 'whoami'
+                        sh 'hostname'
+                        sh 'echo $WORKSPACE'
+
+                        sh '''
+                        coverage run --branch -m pytest test/unit
+                        coverage xml -o coverage.xml
+                        coverage report
+                        '''
+                    }
+                }
+
+                stage('Performance') {
+                    agent { label 'perf-agent' }
+
+                    steps {
+                        sh 'whoami'
+                        sh 'hostname'
+                        sh 'echo $WORKSPACE'
+
+                        sh 'jmeter -n -t performance/test.jmx -l result.jtl'
+                    }
+                }
             }
         }
     }
 
     post {
-    always {
-        script {
-            if (fileExists('result.jtl')) {
-                perfReport sourceDataFiles: 'result.jtl'
-            } else {
-                echo "Skipping perfReport: no JTL generated"
+        always {
+            script {
+                if (fileExists('result.jtl')) {
+                    perfReport sourceDataFiles: 'result.jtl'
+                } else {
+                    echo "Skipping perfReport"
+                }
             }
         }
     }
-}
 }
