@@ -111,9 +111,9 @@ pipeline {
         }
     }
 
-    post {
-        always {
-	 node {
+post {
+    always {
+        node {
             script {
                 if (fileExists('result.jtl')) {
                     perfReport sourceDataFiles: 'result.jtl'
@@ -122,6 +122,5 @@ pipeline {
                 }
             }
         }
-}
     }
 }
